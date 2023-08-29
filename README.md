@@ -1,2 +1,2 @@
 # ecommerce_django
-Ecommerce Django Mini Project
+ITWORX | Ecommerce Django Mini Project
