@@ -1,21 +1,18 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 
-class User(models.Model):
+class User(AbstractUser):
     full_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=250)
     password = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
 
-    class Meta:
-        abstract = True
-
 
 class Admin(User):
     job_title = models.CharField(max_length=200)
-    # date time to be changed
     hire_date = models.DateTimeField(default=datetime.now())
 
 
@@ -45,13 +42,13 @@ class Order(models.Model):
         ('Approved', 'Approved'),
         ('Declined', 'Declined'),
         ('Shipped', 'Shipped'),
-        ('Delivered', 'Delivered')    
+        ('Delivered', 'Delivered')
     }
     status = models.CharField(max_length=20, choices=status_choices)
+
 
 class OrderDetails(models.Model):
     order_id = models.ForeignKey(Order, on_delete=models.RESTRICT)
     product_id = models.ForeignKey(Product, on_delete=models.RESTRICT)
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     ordered_count = models.PositiveIntegerField()
-
