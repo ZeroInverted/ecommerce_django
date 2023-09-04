@@ -10,15 +10,27 @@ class User(AbstractUser):
     password = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
 
+    class Meta:
+        verbose_name = "User"
+        verbose_name_plural = "Users"
+
 
 class Admin(User):
     job_title = models.CharField(max_length=200)
     hire_date = models.DateTimeField(default=datetime.now())
 
+    class Meta:
+        verbose_name = "Admin"
+        verbose_name_plural = "Admins"
+
 
 class Customer(User):
     phone = models.CharField(max_length=30)
     adress = models.TextField()
+
+    class Meta:
+        verbose_name = "Customer"
+        verbose_name_plural = "Customers"
 
 
 class Category(models.Model):
