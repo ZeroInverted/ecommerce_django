@@ -1,9 +1,9 @@
-{% extends "base.html" %}
-
+{% extends "website/base.html" %}
+{% load static %}
 {% block title %} Home Page {% endblock %}
 
-{% block content %}
-<section class="feature_section  layout_padding">
+{% block content %} 
+ <section class="feature_section  layout_padding">
     <div class="container">
       <div class="feature_container">
         <div class="box">
@@ -229,13 +229,12 @@
         </div>
         <div class="col-lg-7 col-md-5">
           <div class="img-box">
-            <img src="images/medicines.jpg" alt="">
+            <img src="{% static 'website/images/medicines.jpg' %}" alt="">
           </div>
         </div>
       </div>
     </div>
   </section>
-
 
   <!-- end discount section -->
 
@@ -257,7 +256,7 @@
                 </a>
               </div>
               <div class="img-box">
-                <img src="images/p-1.jpg" alt="">
+                <img src="{% static 'website/images/p-1.jpg' %}" alt="">
               </div>
               <div class="detail-box">
                 <div class="star_container">
@@ -288,71 +287,7 @@
                 </a>
               </div>
               <div class="img-box">
-                <img src="images/p-5.jpg" alt="">
-              </div>
-              <div class="detail-box">
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star-o" aria-hidden="true"></i>
-
-                </div>
-                <div class="text">
-                  <h6>
-                    Health
-                  </h6>
-                  <h6 class="price">
-                    <span>
-                      $
-                    </span>
-                    30
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="btn_container">
-                <a href="">
-                  Buy Now
-                </a>
-              </div>
-              <div class="img-box">
-                <img src="images/p-2.jpg" alt="">
-              </div>
-              <div class="detail-box">
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star-o" aria-hidden="true"></i>
-
-                </div>
-                <div class="text">
-                  <h6>
-                    Health
-                  </h6>
-                  <h6 class="price">
-                    <span>
-                      $
-                    </span>
-                    30
-                  </h6>
-                </div>
-              </div>
-            </div>
-            <div class="box">
-              <div class="btn_container">
-                <a href="">
-                  Buy Now
-                </a>
-              </div>
-              <div class="img-box">
-                <img src="images/p-5.jpg" alt="">
+                <img src="{% static 'website/images/p-5.jpg' %}" alt="">
               </div>
               <div class="detail-box">
                 <div class="star_container">
@@ -385,7 +320,7 @@
                 </a>
               </div>
               <div class="img-box">
-                <img src="images/p-3.jpg" alt="">
+                <img src="{% static 'website/images/p-2.jpg' %}"" alt="">
               </div>
               <div class="detail-box">
                 <div class="star_container">
@@ -416,7 +351,7 @@
                 </a>
               </div>
               <div class="img-box">
-                <img src="images/p-5.jpg" alt="">
+                <img src="{% static 'website/images/p-5.jpg' %}"" alt="">
               </div>
               <div class="detail-box">
                 <div class="star_container">
@@ -449,7 +384,7 @@
                 </a>
               </div>
               <div class="img-box">
-                <img src="images/p-4.jpg" alt="">
+                <img src="{% static 'website/images/p-3.jpg' %}"" alt="">
               </div>
               <div class="detail-box">
                 <div class="star_container">
@@ -480,7 +415,71 @@
                 </a>
               </div>
               <div class="img-box">
-                <img src="images/p-5.jpg" alt="">
+                <img src="{% static 'website/images/p-5.jpg' %}"" alt="">
+              </div>
+              <div class="detail-box">
+                <div class="star_container">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+
+                </div>
+                <div class="text">
+                  <h6>
+                    Health
+                  </h6>
+                  <h6 class="price">
+                    <span>
+                      $
+                    </span>
+                    30
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="box">
+              <div class="btn_container">
+                <a href="">
+                  Buy Now
+                </a>
+              </div>
+              <div class="img-box">
+                <img src="{% static 'website/images/p-4.jpg' %}"" alt="">
+              </div>
+              <div class="detail-box">
+                <div class="star_container">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+
+                </div>
+                <div class="text">
+                  <h6>
+                    Health
+                  </h6>
+                  <h6 class="price">
+                    <span>
+                      $
+                    </span>
+                    30
+                  </h6>
+                </div>
+              </div>
+            </div>
+            <div class="box">
+              <div class="btn_container">
+                <a href="">
+                  Buy Now
+                </a>
+              </div>
+              <div class="img-box">
+                <img src="{% static 'website/images/p-5.jpg' %}"" alt="">
               </div>
               <div class="detail-box">
                 <div class="star_container">
@@ -524,7 +523,7 @@
                 </a>
               </div>
               <div class="img-box">
-                <img src="images/p-6.jpg" alt="">
+                <img src="{% static 'website/images/p-6.jpg' %}"" alt="">
               </div>
               <div class="detail-box">
                 <div class="star_container">
@@ -557,7 +556,7 @@
                 </a>
               </div>
               <div class="img-box">
-                <img src="images/p-6.jpg" alt="">
+                <img src="{% static 'website/images/p-6.jpg' %}"" alt="">
               </div>
               <div class="detail-box">
                 <div class="star_container">
@@ -590,7 +589,7 @@
                 </a>
               </div>
               <div class="img-box">
-                <img src="images/p-6.jpg" alt="">
+                <img src="{% static 'website/images/p-6.jpg' %}" alt="">
               </div>
               <div class="detail-box">
                 <div class="star_container">
@@ -623,7 +622,7 @@
                 </a>
               </div>
               <div class="img-box">
-                <img src="images/p-6.jpg" alt="">
+                <img src="{% static 'website/images/p-6.jpg' %}" alt="">
               </div>
               <div class="detail-box">
                 <div class="star_container">
@@ -670,7 +669,7 @@
       </div>
 
       <div class="img-box">
-        <img src="images/about-medicine.png" alt="">
+        <img src="{% static 'website/images/about-medicine.png' %}" alt="">
       </div>
       <div class="detail-box">
         <p>
@@ -694,7 +693,7 @@
     <div class="container">
       <div class="custom_heading-container ">
         <h2>
-          What is says our clients
+          Our clients' testimonials
         </h2>
       </div>
       <div id="carouselExample2Indicators" class="carousel slide" data-ride="carousel">
@@ -708,14 +707,12 @@
             <div class="client_container layout_padding2">
               <div class="client_detail">
                 <p>
-                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                  alteration in
-                  some form, by injected humour, or randomised words which don't look even slightly believable.
+                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla velit odit impedit reprehenderit illo molestias inventore facere, sed neque id quos unde recusandae iste placeat hic error alias ab asperiores.
                 </p>
               </div>
               <div class="client_box ">
                 <div class="img-box">
-                  <img src="images/client.png " alt="">
+                  <img src="{% static 'website/images/client.png' %}" alt="">
                 </div>
                 <div class="name">
                   <h5>
@@ -725,7 +722,7 @@
                     <span>
                       Client
                     </span>
-                    <img src="images/quote.png" alt="">
+                    <img src="{% static 'website/images/quote.png' %}" alt="">
                   </h6>
                 </div>
               </div>
@@ -735,14 +732,12 @@
             <div class="client_container layout_padding2">
               <div class="client_detail">
                 <p>
-                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                  alteration in
-                  some form, by injected humour, or randomised words which don't look even slightly believable.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Error doloribus facere unde veritatis provident illo culpa odio delectus velit officia quod, libero alias dolorem sit in voluptatum cumque aspernatur fugiat?
                 </p>
               </div>
               <div class="client_box ">
                 <div class="img-box">
-                  <img src="images/client.png " alt="">
+                  <img src="{% static 'website/images/client.png' %}" alt="">
                 </div>
                 <div class="name">
                   <h5>
@@ -752,7 +747,7 @@
                     <span>
                       Client
                     </span>
-                    <img src="images/quote.png" alt="">
+                    <img src="{% static 'website/images/quote.png' %}" alt="">
                   </h6>
                 </div>
               </div>
@@ -762,14 +757,12 @@
             <div class="client_container layout_padding2">
               <div class="client_detail">
                 <p>
-                  There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                  alteration in
-                  some form, by injected humour, or randomised words which don't look even slightly believable.
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, exercitationem doloribus dolorum esse dolor tempora delectus consequuntur debitis explicabo cum est vitae molestias natus, nisi cupiditate repudiandae, quidem a! Nemo.
                 </p>
               </div>
               <div class="client_box ">
                 <div class="img-box">
-                  <img src="images/client.png " alt="">
+                  <img src="{% static 'website/images/client.png' %} " alt="">
                 </div>
                 <div class="name">
                   <h5>
@@ -779,7 +772,7 @@
                     <span>
                       Client
                     </span>
-                    <img src="images/quote.png" alt="">
+                    <img src="{% static 'website/images/quote.png' %}" alt="">
                   </h6>
                 </div>
               </div>
@@ -844,12 +837,12 @@
               Get Now Medicines
             </h3>
             <p>
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-              in some form, by injected humour, or randomised words which don't look even slightly believable.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, harum. Hic, quibusdam adipisci. Dolorum dicta dignissimos architecto velit ullam, reiciendis minus at atque accusamus commodi, laboriosam laudantium, cupiditate consectetur corporis!
             </p>
           </div>
         </div>
       </div>
     </div>
   </section>
-(% endblock %)
+
+  {% endblock %}
