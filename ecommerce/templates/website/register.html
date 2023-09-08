@@ -3,5 +3,14 @@
 {% block title %} Register {% endblock %}
 
 {% block content %}
+    <div class="m-5 ">
 
+    <br>
+    <h1 style="text-align: center;">Register</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}    
+        <input type="submit" class="btn btn-primary" value="Register Account">
+    </form>
+    </div>
 {% endblock %}

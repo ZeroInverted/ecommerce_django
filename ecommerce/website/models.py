@@ -7,8 +7,23 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     full_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=250)
-    password = models.CharField(max_length=100)
-    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        # Use email as a username
+        if self.email:
+            self.username = self.email
+         # Split the full_name into first_name and last_name
+        if self.full_name:
+            names = self.full_name.split()
+            if len(names) > 1:
+                self.first_name = names[0]
+                self.last_name = ' '.join(names[1:])
+            else:
+                # If there's only one name, set it as the first_name
+                self.first_name = self.full_name
+                self.last_name = ''
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "User"
