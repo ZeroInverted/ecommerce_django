@@ -24,6 +24,9 @@ class Register(View):
         form = CustomerForm(request.POST)
         if form.is_valid():
             form.save()
+            user = form.cleaned_data.get("email")
+            messages.success(
+                request, 'Account was registered successfully! Username is ' + str(user))
             login_url = reverse("login")
             return redirect(login_url)
         else:
@@ -33,6 +36,21 @@ class Register(View):
 class Login(View):
     def get(self, request):
         return render(request, "website/login.html")
+
+    def post(self, request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print(username)
+        print(password)
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            home_url = reverse("home")
+            return redirect(home_url)
+        # if user doesn't exist in db
+        else:
+            print("Error logging")
+            return render(request, "website/login.html")
 
 
 class Logout(View):
