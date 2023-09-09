@@ -82,10 +82,10 @@
                   <a class="nav-link" href="about.html"> About </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="medicine.html"> Products </a>
+                  <a class="nav-link" href="{% url 'store' %}"> Store </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="news.html"> Cart </a>
+                  <a class="nav-link" href="{% url 'cart' %}"> Cart </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="contact.html">Contact us</a>
@@ -279,10 +279,10 @@
                 <a class="nav-link" href="about.html"> About </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="medicine.html"> Products </a>
+                <a class="nav-link" href="{% url 'store' %}"> Store </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="buy.html"> Cart </a>
+                <a class="nav-link" href="{% url 'cart' %}"> Cart </a>
               </li>
             </ul>
           </div>
@@ -312,13 +312,14 @@
   <!-- footer section -->
   <section class="container-fluid footer_section">
     <p>
-      &copy; 2023 All Rights Reserved. 
+      &copy; 2023 All rights are reserved to Mahmoud Fathy
     </p>
   </section>
   <!-- footer section -->
 
   <script type="text/javascript" src=" {% static 'website/js/jquery-3.4.1.min.js' %} "></script>
   <script type="text/javascript" src="  {% static 'website/js/bootstrap.js' %}"></script>
+  <script type="text/javascript" src="  {% static 'website/js/cart.js' %}"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
   </script>
   <script type="text/javascript">

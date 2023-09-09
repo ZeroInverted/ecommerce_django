@@ -40,19 +40,34 @@ class Login(View):
     def post(self, request):
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username)
-        print(password)
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(
+                request, "Logged in successfully as " + str(username))
             home_url = reverse("home")
             return redirect(home_url)
         # if user doesn't exist in db
         else:
-            print("Error logging")
+            messages.error(request, "Failed to login, please try again")
             return render(request, "website/login.html")
 
 
 class Logout(View):
     def get(self, request):
         pass
+
+
+class Store(View):
+    def get(self, request):
+        return render(request, "website/store.html")
+
+
+class Cart(View):
+    def get(self, request):
+        return render(request, "website/cart.html")
+
+
+class Checkout(View):
+    def get(self, request):
+        return render(request, "website/store.html")
