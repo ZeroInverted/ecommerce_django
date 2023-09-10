@@ -76,7 +76,7 @@ class Product(models.Model):
     category_id = models.ForeignKey(Category, on_delete=models.RESTRICT)
 
     def __str__(self) -> str:
-        return self.name
+        return self.name_en
 
     class Meta:
         verbose_name = "Product"
@@ -97,7 +97,7 @@ class Order(models.Model):
     status = models.CharField(max_length=20, choices=status_choices)
 
     def __str__(self) -> str:
-        return self.name
+        return str(self.id)
 
     class Meta:
         verbose_name = "Order"
@@ -110,9 +110,6 @@ class OrderDetails(models.Model):
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     ordered_count = models.PositiveIntegerField()
 
-    def __str__(self) -> str:
-        return self.name
-
     class Meta:
-        verbose_name = "OrderDetail"
-        verbose_name_plural = "OrdersDetails"
+        verbose_name = "Order Detail"
+        verbose_name_plural = "Orders Details"
