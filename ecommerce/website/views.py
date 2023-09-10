@@ -5,6 +5,7 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import CustomerForm
+from .models import Product
 
 # Create your views here.
 
@@ -60,7 +61,8 @@ class Logout(View):
 
 class Store(View):
     def get(self, request):
-        return render(request, "website/store.html")
+        products = Product.objects.all()
+        return render(request, "website/store.html", {"products": products})
 
 
 class Cart(View):

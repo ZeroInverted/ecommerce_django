@@ -3,7 +3,23 @@
 {% block title %} Store {% endblock %}
 
 {% block content %} 
-<section class="health_section layout_padding">
+  <div class="row">
+    {% for product in products %}
+      <div class="col-lg-4 p-5">
+          <img src="{{product.image_url}}" alt="" class="thumbnail">
+          <div class="box-element product">
+            <h6><strong>{{product.name_en}}</strong></h6>
+            <hr>
+
+            <button class="btn btn-outline-secondary add-btn"> Add To Cart</button>
+            <a class="btn btn-outline-success" href="#">View</a>
+            <h4 style="display: inline-block; float: right"><strong>${{product.unit_price|floatformat:2}}</strong></h4>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+
+<!-- <section class="health_section layout_padding">
     <div class="health_carousel-container">
       <h2 class="text-uppercase">
         Medicine & Health
@@ -418,5 +434,5 @@
         See more
       </a>
     </div>
-  </section>
+  </section> -->
 {% endblock %}

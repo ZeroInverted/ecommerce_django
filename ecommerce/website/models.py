@@ -50,7 +50,7 @@ class Customer(User):
     adress = models.TextField()
 
     def __str__(self) -> str:
-        return self.name
+        return super().full_name
 
     class Meta:
         verbose_name = "Customer"
@@ -74,9 +74,19 @@ class Product(models.Model):
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     stock_quantity = models.PositiveIntegerField()
     category_id = models.ForeignKey(Category, on_delete=models.RESTRICT)
+    # Use pillow to process images
+    image = models.ImageField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.name_en
+
+    @property
+    def image_url(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
 
     class Meta:
         verbose_name = "Product"
@@ -109,6 +119,9 @@ class OrderDetails(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.RESTRICT)
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     ordered_count = models.PositiveIntegerField()
+
+    def __str__(self) -> str:
+        return str(self.id)
 
     class Meta:
         verbose_name = "Order Detail"
