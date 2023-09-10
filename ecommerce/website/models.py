@@ -25,6 +25,9 @@ class User(AbstractUser):
                 self.last_name = ''
         super().save(*args, **kwargs)
 
+    def __str__(self) -> str:
+        return self.name
+
     class Meta:
         verbose_name = "User"
         verbose_name_plural = "Users"
@@ -33,6 +36,9 @@ class User(AbstractUser):
 class Admin(User):
     job_title = models.CharField(max_length=200)
     hire_date = models.DateTimeField(default=datetime.now())
+
+    def __str__(self) -> str:
+        return self.name
 
     class Meta:
         verbose_name = "Admin"
@@ -43,6 +49,9 @@ class Customer(User):
     phone = models.CharField(max_length=30)
     adress = models.TextField()
 
+    def __str__(self) -> str:
+        return self.name
+
     class Meta:
         verbose_name = "Customer"
         verbose_name_plural = "Customers"
@@ -51,6 +60,13 @@ class Customer(User):
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
 
 class Product(models.Model):
     name_en = models.CharField(max_length=200)
@@ -58,6 +74,13 @@ class Product(models.Model):
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     stock_quantity = models.PositiveIntegerField()
     category_id = models.ForeignKey(Category, on_delete=models.RESTRICT)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = "Product"
+        verbose_name_plural = "Products"
 
 
 class Order(models.Model):
@@ -73,9 +96,23 @@ class Order(models.Model):
     }
     status = models.CharField(max_length=20, choices=status_choices)
 
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = "Order"
+        verbose_name_plural = "Orders"
+
 
 class OrderDetails(models.Model):
     order_id = models.ForeignKey(Order, on_delete=models.RESTRICT)
     product_id = models.ForeignKey(Product, on_delete=models.RESTRICT)
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     ordered_count = models.PositiveIntegerField()
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = "OrderDetail"
+        verbose_name_plural = "OrdersDetails"
