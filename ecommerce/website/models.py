@@ -108,6 +108,20 @@ class Order(models.Model):
     }
     status = models.CharField(max_length=20, choices=status_choices)
 
+    # Calculate cart total based on each product's total from OrderDetails
+    @property
+    def calculate_cart_total(self):
+        orderdetails = self.orderdetails_set.all()
+        cart_total = sum([item.calculate_total for item in orderdetails])
+        return cart_total
+    # Calculate the quantity of items for the entire cart
+
+    @property
+    def calculate_items_quantity(self):
+        orderdetails = self.orderdetails_set.all()
+        total_quantity = sum([item.ordered_count for item in orderdetails])
+        return total_quantity
+
     def __str__(self) -> str:
         return str(self.id)
 
@@ -119,11 +133,17 @@ class Order(models.Model):
 class OrderDetails(models.Model):
     order_id = models.ForeignKey(Order, on_delete=models.RESTRICT)
     product_id = models.ForeignKey(Product, on_delete=models.RESTRICT)
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     ordered_count = models.PositiveIntegerField()
 
     def __str__(self) -> str:
         return str(self.id)
+
+    # Calculate total for one product in the cart
+
+    @property
+    def calculate_total(self):
+        total = self.product_id.unit_price * self.ordered_count
+        return total
 
     class Meta:
         verbose_name = "Order Detail"

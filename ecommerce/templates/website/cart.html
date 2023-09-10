@@ -11,8 +11,8 @@
             <br>
             <table class="table">
                 <tr>
-                    <th><h5>Items: <strong>3</strong></h5></th>
-                    <th><h5>Total: <strong>$42</strong></h5></th>
+                    <th><h5>Items: <strong>{{order.calculate_items_quantity}}</strong></h5></th>
+                    <th><h5>Total: <strong>${{order.calculate_cart_total}}</strong></h5></th>
                     <th>
                         <a href="{% url 'checkout' %}" class="btn btn-success" style="float:right; margin: 5px">Checkout</a>
                     </th>
@@ -47,7 +47,7 @@
                             <img src="{% static 'website/images/arrow_down.png' %}" alt="" class="change-quantity">
                         </div>
                     </div>
-                    <div style="flex:1"><p>$32</p></div>
+                    <div style="flex:1"><p>${{item.calculate_total}}</p></div>
 
             </div>
             {% endfor %}

@@ -76,12 +76,12 @@ class Cart(View):
             order, created_order = Order.objects.get_or_create(
                 customer_id=customer, status="Pending")
             # Reverse lookup through the FK defined in orderdetails to get all orderdetails
-            print(order)
             items = order.orderdetails_set.all()
             print(items)
         else:
             items = []
-        return render(request, "website/cart.html", {"items": items})
+            order = {"calculate_cart_total": 0, "calculate_items_quantity": 0}
+        return render(request, "website/cart.html", {"items": items, "order": order})
 
 
 class Checkout(View):
