@@ -26,7 +26,7 @@ class User(AbstractUser):
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return self.name
+        return self.email
 
     class Meta:
         verbose_name = "User"
@@ -38,7 +38,7 @@ class Admin(User):
     hire_date = models.DateTimeField(default=datetime.now())
 
     def __str__(self) -> str:
-        return self.name
+        return self.email
 
     class Meta:
         verbose_name = "Admin"
@@ -50,7 +50,7 @@ class Customer(User):
     adress = models.TextField()
 
     def __str__(self) -> str:
-        return super().full_name
+        return self.email
 
     class Meta:
         verbose_name = "Customer"
@@ -80,6 +80,7 @@ class Product(models.Model):
     def __str__(self) -> str:
         return self.name_en
 
+    # Check if an image exists, if so, return its URL, if it doesn't return an empty url.
     @property
     def image_url(self):
         try:
@@ -95,7 +96,8 @@ class Product(models.Model):
 
 class Order(models.Model):
     create_date = models.DateTimeField(default=datetime.now())
-    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    total_price = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True)
     customer_id = models.ForeignKey(Customer, on_delete=models.RESTRICT)
     status_choices = {
         ('Pending', 'Pending'),

@@ -5,7 +5,7 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import CustomerForm
-from .models import Product
+from .models import Product, Customer, Order
 
 # Create your views here.
 
@@ -67,7 +67,21 @@ class Store(View):
 
 class Cart(View):
     def get(self, request):
-        return render(request, "website/cart.html")
+        # Check if user is logged in or not
+        if request.user.is_authenticated:
+            # If user is logged in, fetch user from the Customer db
+            print(request.user)
+            customer = Customer.objects.get(user_ptr=request.user)
+            # Fetch user's order if it exists, if not, create it
+            order, created_order = Order.objects.get_or_create(
+                customer_id=customer, status="Pending")
+            # Reverse lookup through the FK defined in orderdetails to get all orderdetails
+            print(order)
+            items = order.orderdetails_set.all()
+            print(items)
+        else:
+            items = []
+        return render(request, "website/cart.html", {"items": items})
 
 
 class Checkout(View):
