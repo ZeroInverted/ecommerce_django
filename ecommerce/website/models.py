@@ -141,7 +141,7 @@ class Order(models.Model):
 class OrderDetails(models.Model):
     order_id = models.ForeignKey(Order, on_delete=models.RESTRICT)
     product_id = models.ForeignKey(Product, on_delete=models.RESTRICT)
-    ordered_count = models.PositiveIntegerField()
+    ordered_count = models.PositiveIntegerField(default=1)
 
     def __str__(self) -> str:
         return str(self.id)

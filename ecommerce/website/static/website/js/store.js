@@ -57,6 +57,27 @@ function main(){
     price_input?.addEventListener("change", (e) => {
         price_span.innerText = "0 - " + e.target.value
     })
+
+    const products = document.querySelectorAll(".product")
+    products?.forEach( (product) =>{
+        const btn = product.querySelector(".add-btn")
+        btn?.addEventListener("click", (e)=>{
+            fetch("http://127.0.0.1:8000/cart", {
+                method:"POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify({
+                    pid:product.getAttribute("data-pid"),
+                })
+            })
+        })
+    })
+
+    
+
+    
 }
 
 main()

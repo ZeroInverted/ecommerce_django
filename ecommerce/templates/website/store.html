@@ -34,7 +34,7 @@
     {% for product in products %}
       <div class="col-lg-4 p-5 img-container">
           <img src="{{product.image_url}}" alt="" class="thumbnail">
-          <div class="box-element product">
+          <div class="box-element product" data-pid={{product.id}}>
             <h6><strong>{{product.name_en}}</strong></h6>
             <hr>
 

@@ -1,11 +1,11 @@
 from django.urls import reverse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import CustomerForm
-from .models import Product, Customer, Order
+from .models import Product, Customer, Order, OrderDetails
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.core import serializers
@@ -116,6 +116,29 @@ class Cart(View):
             items = []
             order = {"calculate_cart_total": 0, "calculate_items_quantity": 0}
         return render(request, "website/cart.html", {"items": items, "order": order})
+
+    def post(self, request):
+        if request.user.is_authenticated:
+            customer = Customer.objects.get(user_ptr=request.user)
+            body_data = json.loads(request.body)
+            if body_data:
+                pid = body_data['pid']
+                order, created = Order.objects.get_or_create(
+                    customer_id=customer, status="Pending")
+                product = get_object_or_404(Product, id=pid)
+                order_detail, created = OrderDetails.objects.get_or_create(
+                    order_id=order, product_id=product)
+                if not created:
+                    order_detail.ordered_count += 1
+                    order_detail.save()
+                order.total_price = order.calculate_cart_total
+                order.save()
+                response_data = {"is_successful": True}
+            else:
+                response_data = {"is_successful": False}
+        else:
+            response_data = {"is_successful": False}
+        return JsonResponse(response_data)
 
 
 class Orders(View):
