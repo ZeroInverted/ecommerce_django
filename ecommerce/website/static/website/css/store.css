@@ -1,0 +1,13 @@
+.filter-options {
+    padding: 15px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+    align-content: center;
+}
+
+.filter-option, .filter-action {
+    margin-inline: 1rem;
+    margin-block: auto;
+    align-content: center;
+}

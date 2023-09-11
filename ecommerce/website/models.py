@@ -76,6 +76,14 @@ class Product(models.Model):
     category_id = models.ForeignKey(Category, on_delete=models.RESTRICT)
     # Use pillow to process images
     image = models.ImageField(null=True, blank=True)
+    img_url = models.CharField(max_length=200, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.img_url = "http://127.0.0.1:8000" + self.image_url
+        else:
+            self.img_url = ""
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return self.name_en

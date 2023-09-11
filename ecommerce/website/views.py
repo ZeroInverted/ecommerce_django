@@ -68,6 +68,38 @@ class Store(View):
         products = Product.objects.all()
         return render(request, "website/store.html", {"products": products})
 
+    @csrf_exempt
+    def post(self, request):
+        customer = Customer.objects.get(user_ptr=request.user)
+        body_data = json.loads(request.body)
+        if body_data:
+
+            category = body_data['category']
+            if category is not None and category != "all":
+                category_cond = Q(category_id=category)
+            else:
+                category_cond = Q()
+
+            price = float(body_data['price'])
+            if price >= 0 and price is not None:
+                price_cond = Q(unit_price__lte=price)
+            else:
+                price_cond = Q()
+
+            pname = body_data["pname"]
+            if pname is not None and pname != "":
+                pname_cond = Q(name_en__icontains=pname)
+            else:
+                pname_cond = Q()
+
+            combined_cond = category_cond & price_cond & pname_cond
+
+            products = Product.objects.filter(combined_cond)
+            serial_orders = serializers.serialize("json", products)
+            print(serial_orders)
+
+            return JsonResponse(serial_orders, safe=False)
+
 
 class Cart(View):
     def get(self, request):

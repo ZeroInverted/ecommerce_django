@@ -2,8 +2,35 @@
 {% load static %}
 {% block title %} Store {% endblock %}
 
-{% block content %} 
-  <div class="row">
+{% block content %}
+  <div>
+    <form id="filter-form"  class="filter-options">
+      <div class="filter-option">
+        <label for="category">Category</label>
+        <select name="category" id="category">  
+          <option value="all">All Categories</option>
+          <option value="1">Filter by Medicine</option>
+          <option value="2">Filter by Vitamins</option>
+        </select>
+      </div>
+      
+      <div class="filter-option">
+        <label for="price">Price</label>
+        <input type="range" name="price" id="price" class="range-selector" min="0" max="1000" step="50" value="1000">
+        <span id="price-span">1000</span>
+      </div>
+      
+      <div class="filter-option">
+        <label for="pname">Product Name</label>
+        <input type="search" name="pname" id="pname">
+      </div>
+      
+      <div class="filter-action">
+        <button  type="submit" class="btn btn-success">Apply Filters</button>
+      </div>
+    </form>
+  </div>
+  <div class="row" id="products-container">
     {% for product in products %}
       <div class="col-lg-4 p-5 img-container">
           <img src="{{product.image_url}}" alt="" class="thumbnail">
@@ -19,5 +46,5 @@
     {% endfor %}
   </div>
 
-
+  <script type="text/javascript" src="{% static 'website/js/store.js' %}"></script> 
 {% endblock %}
