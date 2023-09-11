@@ -1,0 +1,31 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block title %} Orders {% endblock %}
+
+{% block content %} 
+<div class="order-table-container">
+
+  <select class="filter">
+    <option value="all">All Orders</option>
+    <option value="Pending">Filter by Pending Orders</option>
+    <option value="Approved">Filter by Approved Orders</option>
+    <option value="Declined">Filter by Declined Orders</option>
+    <option value="Shipped">Filter by Shipped Orders</option>
+    <option value="Delivered">Filter by Delivered Orders</option>
+  </select>
+  
+  <table class="order-table">
+    <tr>
+      <th>Order ID</th>
+      <th>Status</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.id }}</td> 
+      <td>{{ order.status }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}
