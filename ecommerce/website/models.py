@@ -73,7 +73,8 @@ class Product(models.Model):
     name_ar = models.CharField(max_length=200)
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     stock_quantity = models.PositiveIntegerField()
-    category_id = models.ForeignKey(Category, on_delete=models.RESTRICT)
+    category_id = models.ForeignKey(
+        Category, on_delete=models.RESTRICT, null=True)
     # Use pillow to process images
     image = models.ImageField(null=True, blank=True)
     img_url = models.CharField(max_length=200, null=True, blank=True)
