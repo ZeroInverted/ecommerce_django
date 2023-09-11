@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.core import serializers
 from django.db.models import Q
+from django.views.decorators.http import require_http_methods
 
 # Create your views here.
 
@@ -139,6 +140,43 @@ class Cart(View):
         else:
             response_data = {"is_successful": False}
         return JsonResponse(response_data)
+
+    @csrf_exempt
+    def put(self, request):
+        if request.user.is_authenticated:
+            customer = Customer.objects.get(user_ptr=request.user)
+            body_data = json.loads(request.body)
+
+            if body_data:
+                pid = body_data['pid']
+                new_quantity = body_data['quantity']
+
+                # Retrieve the customer's pending order (shopping cart)
+                order, created = Order.objects.get_or_create(
+                    customer_id=customer, status="Pending")
+
+                # Retrieve the product
+                product = get_object_or_404(Product, id=pid)
+
+                # Retrieve or create the order detail
+                order_detail, created = OrderDetails.objects.get_or_create(
+                    order_id=order, product_id=product)
+
+                if new_quantity <= 0:
+                    # Remove the item from the order if quantity is 0 or negative
+                    order_detail.delete()
+                else:
+                    # Update the quantity in the order detail
+                    order_detail.ordered_count = new_quantity
+                    order_detail.save()
+
+                # Recalculate the total price of the order
+                order.total_price = order.calculate_cart_total
+                order.save()
+
+                return JsonResponse({"is_successful": True})
+
+        return JsonResponse({"is_successful": False})
 
 
 class Orders(View):

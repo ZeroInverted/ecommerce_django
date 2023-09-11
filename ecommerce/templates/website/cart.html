@@ -11,8 +11,8 @@
             <br>
             <table class="table">
                 <tr>
-                    <th><h5>Items: <strong>{{order.calculate_items_quantity}}</strong></h5></th>
-                    <th><h5>Total: <strong>${{order.calculate_cart_total}}</strong></h5></th>
+                    <th><h5>Items: <strong id="items-total">{{order.calculate_items_quantity}}</strong></h5></th>
+                    <th><h5>Total: <strong class="cart-total">${{order.calculate_cart_total}}</strong></h5></th>
                     <th>
                         <a href="{% url 'checkout' %}" class="btn btn-success" style="float:right; margin: 5px">Checkout</a>
                     </th>
@@ -29,7 +29,7 @@
                 <div style="flex:1"><strong>Total</strong></div>
             </div>
             {% for item in items %}
-            <div class="cart-row">
+            <div class="cart-row" data-pid="{{item.product_id.id}}" data-quantity="{{item.ordered_count}}" data-price="{{item.product_id.unit_price}}">
 
                     <div style = "flex:2">
                         <img style="width: 100px" class="row-image" src="{{item.product_id.image_url}}">
@@ -41,17 +41,23 @@
                         <p>${{item.product_id.unit_price|floatformat:2}}</p>
                     </div>
                     <div style="flex:1">
-                        <p class="quantity">x{{item.ordered_count}}</p>
+                        <p class="quantity" id="quantity">x{{item.ordered_count}}</p>
                         <div class="quantity">
-                            <img  src="{% static 'website/images/arrow_up.png' %}" alt="" class="change-quantity">
-                            <img src="{% static 'website/images/arrow_down.png' %}" alt="" class="change-quantity">
+                            <button class="up-change">
+                                <img  src="{% static 'website/images/arrow_up.png' %}" alt="" class="change-quantity ">
+                            </button>
+                            <button class="down-change">
+                                
+                                <img src="{% static 'website/images/arrow_down.png' %}" alt="" class="change-quantity">
+                            </button>
                         </div>
                     </div>
-                    <div style="flex:1"><p>${{item.calculate_total}}</p></div>
+                    <div style="flex:1"><p class="total-price" id="total-price">${{item.calculate_total}}</p></div>
 
             </div>
             {% endfor %}
         </div>
     </div>  
 </div>
+<script type="text/javascript" src="{% static 'website/js/cart_update.js' %}"></script>
 {% endblock %}
